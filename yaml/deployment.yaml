@@ -1,0 +1,58 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: upsource 
+  namespace: upsource
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: upsource
+    spec:
+      containers:
+      - name: upsource
+        image: jetbrains/upsource:2017.2.2398
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: /opt/upsource/conf
+          name: upsource-conf
+          subPath: conf
+        - mountPath: /opt/upsource/data
+          name: upsource-data
+          subPath: data
+        - mountPath: /opt/upsource/logs
+          name: upsource-logs
+          subPath: logs
+        - mountPath: /opt/upsource/backups
+          name: upsource-backups
+          subPath: backups
+        #readinessProbe:
+        #  httpGet:
+        #    path: /
+        #    port: 8080
+        #  periodSeconds: 10
+        #  initialDelaySeconds: 15
+        #  timeoutSeconds: 5
+        #  successThreshold: 2
+        #  failureThreshold: 5
+      securityContext:
+        fsGroup: 13001
+      volumes:
+      - name: upsource-conf
+        gcePersistentDisk:
+          pdName: upsource-conf
+          fsType: ext4
+      - name: upsource-data
+        gcePersistentDisk:
+          pdName: upsource-data
+          fsType: ext4
+      - name: upsource-logs
+        gcePersistentDisk:
+          pdName: upsource-logs
+          fsType: ext4
+      - name: upsource-backups
+        gcePersistentDisk:
+          pdName: upsource-backups
+          fsType: ext4

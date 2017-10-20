@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: upsource-ui
+  namespace: upsource
+spec:
+  type: NodePort
+  selector:
+    app: upsource
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      name: ui

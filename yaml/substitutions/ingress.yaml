@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: upsource
+  namespace: upsource
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: "gce"
+spec:
+  tls:
+  - hosts:
+    - DOMAINNAME 
+    secretName: upsource-tls
+  rules:
+  - host: DOMAINNAME
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: upsource-ui
+          servicePort: 8080 
