@@ -1,1 +1,1 @@
-# IaC to Deploy Upsource to Google Container Engine [![Build Status](https://travis-ci.com/idexx-labs/ops-gke-upsource.svg?token=W8ef7ZJ6QKApBVcypqwA&branch=master)](https://travis-ci.com/idexx-labs/ops-gke-upsource)
+# IaC to Deploy Upsource to Google Container Engine [![Build Status](https://travis-ci.org/lzysh/ops-gke-upsource.svg?branch=master)](https://travis-ci.org/lzysh/ops-gke-upsource)

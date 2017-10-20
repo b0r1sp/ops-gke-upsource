@@ -6,7 +6,7 @@ cache:
 env:
 - PATH=$PATH:${HOME}/google-cloud-sdk/bin CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
-- openssl aes-256-cbc -K $encrypted_cbe6c2f65494_key -iv $encrypted_cbe6c2f65494_iv
+- openssl aes-256-cbc -K $encrypted_3d71824c6097_key -iv $encrypted_3d71824c6097_iv
   -in credentials.tar.gz.enc -out credentials.tar.gz -d
 - if [ ! -d "${HOME}/google-cloud-sdk/bin" ]; then rm -rf ${HOME}/google-cloud-sdk;
   curl https://sdk.cloud.google.com | bash; fi
@@ -18,5 +18,4 @@ install:
 script:
 - "./test.sh"
 notifications:
-  slack:
-    secure: ZpxrwBxX6ESvlimz5NyzqvccpyYg14Om4ilv9eZO3eAfmwHVdwHT2cy3X5br/Co6RASnwg0QPqR1uzjCkDACpDfyB9nE+Q1VFVNkZY8wAUdvp0LlqfQctdi26mTJ3Xxyo3gUXHbX18Cw2a1EkYKWt2XsxRQLC6k8e34QPI0L6RuXB7rxtDQSfTJZyYcaHwNs5HZZGtiS8GMHU2siukqBVCVlMQjeaomLKwPzOmOM3bsCUP7NGLriO1Wg7xddXNq/DSrbBN/+g50b1TIdCPqzcpno1ruk0LWkfK2u83prUMwfImssyHpb6BPahFFSVuCvipfKPJrsLxCr9rCX9kv38438ls0xOnLC0l64YxIAxuen2IcPwLbRRtzwzvLlzJ/rDE8syJ0yO+37W5bzybdXLTDnV6a8v8GPXbzDQ18Cxd51WPq7sdNh+13lWqqegCuPyKFTaJavtahvALReYvdtLIYUII6QCdwW5CmsxP/F3W5vJS7zDd5cFDxQ7W7EG5621Y/tWxmW3cwH5H84kjowRpuYq7zLRUTsc6L9ySpv7x1aBywsrVSY6HW7uKy5NPlaphV7B5KvxIfi6rn81pHG+CsVHYf2GVfHImTFGBXieQhgDvgZhHFxhFK0E/u30S7Zh8phrh5//fVDy9ZqBo9RIUFpFm7RRPZ4ZqwsqKHChBo=
+  slack: lzysh:0nheJvFHhsWdYlVVfdX0mRNu

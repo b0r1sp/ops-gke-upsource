@@ -33,14 +33,8 @@ cmd="./createDisk.sh"
 ${cmd}
 results
 
-
-# test createDisk.sh
-cmd="./createDisk.sh"
-${cmd}
-results
-
 # test start.sh
-cmd="ops-common/kubectl/start.sh -a upsource -d cr-test.dis.idexx-ops.com"
+cmd="ops-common/kubectl/start.sh -a upsource -d ${domainName}"
 ${cmd}
 results
 
@@ -50,19 +44,10 @@ if [ "${cleanup}" = true ]; then
 	cmd="kubectl delete ns upsource"
 	echoBlue "Running cleanup command: ${cmd}"
         ${cmd}
-	cmd="gcloud container clusters delete upsource-test-cluster"
+	cmd="gcloud container clusters delete ${cluster}"
 	echoBlue "Running cleanup command: ${cmd}"
         ${cmd}
-	cmd="gcloud compute disks delete upsource-data"
-	echoBlue "Running cleanup command: ${cmd}"
-        ${cmd}
-	cmd="gcloud compute disks delete upsource-backups"
-	echoBlue "Running cleanup command: ${cmd}"
-        ${cmd}
-	cmd="gcloud compute disks delete upsource-logs"
-	echoBlue "Running cleanup command: ${cmd}"
-        ${cmd}
-	cmd="gcloud compute disks delete upsource-conf"
+	cmd="gcloud compute disks delete upsource-data upsource-backups upsource-logs upsource-conf"
 	echoBlue "Running cleanup command: ${cmd}"
         ${cmd}
 fi
