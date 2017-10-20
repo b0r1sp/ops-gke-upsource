@@ -5,7 +5,7 @@ testName=upsource-test
 project=ops-iac-sb
 zone=us-east1-b
 clusterName=${testName}-cluster
-domainName=${testName}.oks.lzy.sh
+domainName=${testName}.ois.lzy.sh
 cleanup=true
 
 # set environment
@@ -21,12 +21,10 @@ done
 cmd="ops-common/gcloud/setConfig.sh -p ${project} -z ${zone}"
 echoBlue "Running dependency: ${cmd}"
 ${cmd}
-results
 
 cmd="ops-common/gcloud/createK8sCluster.sh -c ${clusterName}"
 echoBlue "Running dependency: ${cmd}"
 ${cmd}
-results
 
 # test createDisk.sh
 cmd="./createDisk.sh"
