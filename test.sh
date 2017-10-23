@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-# test script setup
-testName=upsource-test
-project=ops-iac-sb
-zone=us-east1-b
-clusterName=${testName}-cluster
-domainName=${testName}.ois.lzy.sh
-cleanup=true
-
 # set environment
 source setEnv.sh
 
@@ -42,7 +34,7 @@ if [ "${cleanup}" = true ]; then
 	cmd="kubectl delete ns upsource"
 	echoBlue "Running cleanup command: ${cmd}"
         ${cmd}
-	cmd="gcloud container clusters delete ${cluster}"
+	cmd="gcloud container clusters delete ${clusterName}"
 	echoBlue "Running cleanup command: ${cmd}"
         ${cmd}
 	cmd="gcloud compute disks delete upsource-data upsource-backups upsource-logs upsource-conf"
