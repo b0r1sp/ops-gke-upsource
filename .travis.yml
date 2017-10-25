@@ -13,6 +13,7 @@ language: bash
 cache:
   directories:
   - "${HOME}/google-cloud-sdk/"
+  - "${HOME}/kcov/"
 
 env:
 - PATH=$PATH:${HOME}/google-cloud-sdk/bin:${HOME}/kcov/bin CLOUDSDK_CORE_DISABLE_PROMPTS=1
@@ -24,21 +25,21 @@ before_install:
   curl https://sdk.cloud.google.com | bash; fi
 - tar -xzf credentials.tar.gz
 - gcloud auth activate-service-account --key-file client-secret.json
-- wget https://github.com/SimonKagstrom/kcov/archive/master.tar.gz
+- if [ ! -d "${HOME}/kcov/bin" ]; then wget https://github.com/SimonKagstrom/kcov/archive/master.tar.gz;
+  tar xzf master.tar.gz;
+  cd kcov-master;
+  mkdir build;
+  cd build;
+  cmake -DCMAKE_INSTALL_PREFIX=${HOME}/kcov ..;
+  make;
+  make install;
+  cd ../..;
+  rm -rf kcov-master;
+  mkdir -p coverage; fi
 
 install:
 - gcloud -q components update
 - gcloud -q components install kubectl
-- tar xzf master.tar.gz
-- cd kcov-master
-- mkdir build
-- cd build
-- cmake -DCMAKE_INSTALL_PREFIX=${HOME}/kcov ..
-- make
-- make install
-- cd ../..
-- rm -rf kcov-master
-- mkdir -p coverage
 
 script:
 - kcov --exclude-path=ops-common coverage test.sh
