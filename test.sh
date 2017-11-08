@@ -20,29 +20,30 @@ ${cmd}
 
 # test createDisk.sh
 cmd="./createDisk.sh"
+echoCyan "Running test on: ${cmd}"
 ${cmd}
 results
 
 # test start.sh
 cmd="ops-common/kubectl/start.sh -a upsource -d ${domainName}"
+echoCyan "Running test on: ${cmd}"
 ${cmd}
 results
 
 # cleanup
-cleanup=true
 if [ "${cleanup}" = true ]; then
 	cmd="kubectl delete ns upsource"
 	echoBlue "Running cleanup command: ${cmd}"
         ${cmd}
-	cmd="gcloud container clusters delete ${clusterName}"
+	cmd="${gcloud} container clusters delete ${clusterName}"
 	echoBlue "Running cleanup command: ${cmd}"
         ${cmd}
-	cmd="gcloud compute disks delete upsource-data upsource-backups upsource-logs upsource-conf"
+	cmd="${gcloud} compute disks delete upsource-data upsource-backups upsource-logs upsource-conf"
 	echoBlue "Running cleanup command: ${cmd}"
         ${cmd}
 fi
 
-# Fail overall script if any tests fail
+# fail overall script if any of the individual results fail
 if [ "${fail}" = true ]; then
         exit 1
 fi

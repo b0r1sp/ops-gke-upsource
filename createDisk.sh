@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
-# source in environment and functions
-source setEnv.sh
+# check for environment config
+if [ ! "${functions}" ] || [ ! "${gcloud}" ]; then
+        echo "Environment not set"
+        exit 1
+fi
+
 source ${functions}/checks.sh
 
+# requirements
 checkProgs gcloud
 
 # gcloud work
