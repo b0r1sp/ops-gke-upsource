@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # check for environment config
 if [ ! "${functions}" ] || [ ! "${gcloud}" ]; then
         echo "Environment not set"
