@@ -2,13 +2,16 @@
 
 set -e
 
-# check for environment config
-if [ ! "${functions}" ] || [ ! "${gcloud}" ]; then
-        echo "Environment not set"
-        exit 1
-fi
+# set bash-commons
+commons="ops-gcp-kubernetes/ops-bash-commons"
 
-source ${functions}/checks.sh
+# script dependencies
+source ${commons}/functions/checks.sh
+source ${commons}/gcloud/functions/debug.sh
+
+# gcloud verbosity
+debug=false
+gcloudDebug
 
 # requirements
 checkProgs gcloud

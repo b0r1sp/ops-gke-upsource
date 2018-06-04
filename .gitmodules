@@ -1,4 +1,4 @@
-[submodule "ops-common"]
-	path = ops-common
-	url = https://github.com/lzysh/ops-common.git
+[submodule "ops-gcp-kubernetes"]
+	path = ops-gcp-kubernetes
+	url = https://github.com/lzysh/ops-gcp-kubernetes.git
 	branch = master

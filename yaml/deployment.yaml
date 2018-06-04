@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: upsource
-        image: jetbrains/upsource:2017.3.2593
+        image: jetbrains/upsource:2018.1.357
         ports:
         - containerPort: 8080
         volumeMounts:
@@ -28,15 +28,15 @@ spec:
         - mountPath: /opt/upsource/backups
           name: upsource-backups
           subPath: backups
-        #readinessProbe:
-        #  httpGet:
-        #    path: /
-        #    port: 8080
-        #  periodSeconds: 10
-        #  initialDelaySeconds: 15
-        #  timeoutSeconds: 5
-        #  successThreshold: 2
-        #  failureThreshold: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          periodSeconds: 10
+          initialDelaySeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 2
+          failureThreshold: 5
       securityContext:
         fsGroup: 13001
       volumes:
