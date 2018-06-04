@@ -11,7 +11,7 @@ source ${commons}/gcloud/functions/debug.sh
 
 # test script setup
 testName=upsource-test
-project=devops-iac-sb
+project=ops-iac-sb
 zone=us-east1-b
 clusterName=${testName}-cluster
 domainName=${testName}.dis.idexx-ops.com
